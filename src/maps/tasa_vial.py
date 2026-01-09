@@ -18,6 +18,8 @@ class TasaVialMap(MapMaker):
         super().__init__()
         self.departamentos_data: Optional[dict] = None
         self.surtidores_data: Optional[csv.DictReader] = None
+
+        # Mejorar annotation
         self.merged_data: None = None
 
         self.set_data()
@@ -33,6 +35,7 @@ class TasaVialMap(MapMaker):
     # TODO's
     # Decouple conversión de los datos a polars DataFrames en métodos individuales
     # Hacer captura de Exception para el método merge_data
+    # Mejorar annotations y añadir logging messages
     def merge_data(self) -> None:
         df_departamentos: None = None
         df_surtidores: None = None
