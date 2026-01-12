@@ -12,10 +12,6 @@ def main():
         format=logging_fmt
     )
 
-    # TODO
-    tasa_vial_map = TasaVialMap()
-    # tasa_vial_map.make_map()
-
 
 if __name__ == "__main__":
     main()
