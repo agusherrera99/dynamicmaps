@@ -1,7 +1,9 @@
-import csv
-
 import logging
 logger = logging.getLogger(__name__)
+
+import pandas as pd
+
+from pandas.core.frame import DataFrame
 
 from pathlib import PosixPath
 from typing import Optional
@@ -13,13 +15,12 @@ class Surtidores:
     def __init__(self) -> None:
         self.surtidores_path: PosixPath = ProjectPath().get_surtidores_path()
 
-    def get_data(self) -> Optional[csv.DictReader]:
+    def get_data(self) -> DataFrame:
         try:
-            with open(self.surtidores_path, newline='') as csvfile:
-                surtidores_reader: csv.DictReader = csv.reader(csvfile, delimiter=',', quotechar='|')
-                logger.info("Datos de surtidores obtenidos correctamente.")
-                return surtidores_reader
-        except FileNotFoundErorr:
+            data: DataFrame = pd.read_csv(self.surtidores_path)
+            logger.info("Datos de surtidores obtenidos correctamente.")
+            return data
+        except FileNotFoundError:
             logger.exception(f"{self.surtidores_path} no existe")
             return None
         except json.JSONDecodeError as error:
