@@ -15,5 +15,8 @@ csvs/*.csv
 # Geopackages
 geopackages/*.geojson
 
+# Parquets
+parquets/*.parquet
+
 dynamicmaps.log
 
