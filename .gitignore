@@ -15,3 +15,5 @@ csvs/*.csv
 # Geopackages
 geopackages/*.geojson
 
+dynamicmaps.log
+
