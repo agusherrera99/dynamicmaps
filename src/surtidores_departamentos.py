@@ -21,8 +21,6 @@ class SurtidoresDepartamentos():
         self.merged_gdf: Optional[GeoDataFrame] = None
         self.similarity_threshold: float = 0.86
 
-        self.save_data()
-
     def get_similarity(self, str1: str, str2: str) -> float:
         return SequenceMatcher(None, str1.lower(), str2.lower()).ratio()
 
@@ -79,16 +77,27 @@ class SurtidoresDepartamentos():
         except Exception as error:
             logger.exception(f"Al intentar combinar datos en un solo GeoDataFrame - {error}")
 
-    def save_data(self):
+    def save_data(self) -> None:
         try:
             self.merge_data()
             if self.merged_gdf is not None and not self.merged_gdf.empty:
-                self.merged_gdf.to_file(
-                    project_path.get_surtidores_departamentos_path(),
-                    driver="GeoJSON"
+                self.merged_gdf.to_parquet(
+                    project_path.get_surtidores_departamentos_path()
                 )
-                logger.info("GeoJson surtidores_departamentos guardado con éxito.")
+                logger.info("surtidores_departamentos guardado con éxito.")
             else:
                 logger.warning("No hay datos para guardar después del merge")
         except Exception as error:
             logger.exception(f"Al intentar guardar datos de energia por departamentos - {error}")
+
+    def get_data(self) -> Optional[GeoDataFrame]:
+        logger.info("obteniendo datos de SurtidoresDepartamentos...")
+        try:
+            if not project_path.get_surtidores_departamentos_path().exists():
+                self.save_data()
+            data: GeoDataFrame = gpd.read_parquet(project_path.get_surtidores_departamentos_path())
+            logger.info("Datos de SurtidoresDepartamentos obtenidos correctamente.")
+            return data
+        except Exception as error:
+            logger.exception(f"Al intentar obtener la información de surtidores_departamentos - {error}")
+            return None
