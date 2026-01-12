@@ -11,8 +11,8 @@ from pandas.core.frame import DataFrame
 from geopandas.geodataframe import GeoDataFrame
 
 from .departamentos import Departamentos
+from .paths import project_path
 from .surtidores import Surtidores
-from .paths import ProjectPath
 
 
 class SurtidoresDepartamentos():
@@ -84,7 +84,7 @@ class SurtidoresDepartamentos():
             self.merge_data()
             if self.merged_gdf is not None and not self.merged_gdf.empty:
                 self.merged_gdf.to_file(
-                    ProjectPath().get_surtidores_departamentos_path(),
+                    project_path.get_surtidores_departamentos_path(),
                     driver="GeoJSON"
                 )
                 logger.info("GeoJson surtidores_departamentos guardado con éxito.")

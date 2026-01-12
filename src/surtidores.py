@@ -8,12 +8,12 @@ from pandas.core.frame import DataFrame
 from pathlib import PosixPath
 from typing import Optional
 
-from .paths import ProjectPath
+from .paths import project_path
 
 
 class Surtidores:
     def __init__(self) -> None:
-        self.surtidores_path: PosixPath = ProjectPath().get_surtidores_path()
+        self.surtidores_path: PosixPath = project_path.get_surtidores_path()
 
     def get_data(self) -> DataFrame:
         try:

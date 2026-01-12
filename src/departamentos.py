@@ -6,12 +6,12 @@ logger = logging.getLogger(__name__)
 from pathlib import PosixPath
 from typing import Optional, Union
 
-from .paths import ProjectPath
+from .paths import project_path
 
 
 class Departamentos:
     def __init__(self) -> None:
-        self.departamentos_path: PosixPath = ProjectPath().get_departamentos_path()
+        self.departamentos_path: PosixPath = project_path.get_departamentos_path()
 
     def get_data(self) -> Optional[list[dict[str, Union[str, int, float]]]]:
         _list = []

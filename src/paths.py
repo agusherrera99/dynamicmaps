@@ -22,3 +22,5 @@ class ProjectPath:
 
     def get_surtidores_departamentos_path(self) -> PosixPath:
         return self.surtidores_departamentos_path
+
+project_path = ProjectPath()

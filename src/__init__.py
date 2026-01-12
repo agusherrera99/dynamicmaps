@@ -1,7 +1,7 @@
-from .paths import ProjectPath
+from .paths import project_path
 from .surtidores_departamentos import SurtidoresDepartamentos
 
 __all__ = [
-    "ProjectPath",
+    "project_path",
     "SurtidoresDepartamentos"
 ]
