@@ -5,6 +5,8 @@ class ProjectPath:
         self.paths: PosixPath = Path(__file__).resolve()
         self.root_path: PosixPath = self.paths.parent.parent
         self.src_path: PosixPath = self.root_path / "src"
+        self.maps_path: PosixPath = self.src_path / "maps"
+        self.visualizations_path: PosixPath = self.maps_path / "visualizations"
 
         self.csvs_path: PosixPath = self.root_path / "csvs"
         self.geopackages_path: PosixPath = self.root_path / "geopackages"
@@ -23,5 +25,8 @@ class ProjectPath:
 
     def get_surtidores_departamentos_path(self) -> PosixPath:
         return self.surtidores_departamentos_path
+
+    def get_visualizations_path(self) -> PosixPath:
+        return self.visualizations_path
 
 project_path = ProjectPath()
