@@ -18,5 +18,9 @@ geopackages/*.geojson
 # Parquets
 parquets/*.parquet
 
+# Visualization maps
+src/maps/visualizations/*.html
+
+# Logs
 dynamicmaps.log
 
